@@ -13,5 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.printf("uwu");
         System.out.printf("unu");
+        System.out.printf("owo");
     }
 }
