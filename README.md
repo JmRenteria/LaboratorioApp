@@ -1,2 +1,2 @@
-# laboratorioApp
-Laboratorio - Taller de Aplicaciones Móviles
+# Laboratorio - Aplicaciones Móviles
+Creación de aplicaciones móviles.
