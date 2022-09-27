@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         etxtNombre = findViewById(R.id.etxtNombre);
         listEstudiante = findViewById(R.id.listEstudiante);
 
-        MainActivity context = this; //Perdón
+        MainActivity context = this;
 
         listarEstudiante();
 

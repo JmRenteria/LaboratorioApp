@@ -45,7 +45,7 @@ public class GestionNotas extends AppCompatActivity {
         txtPromedio.setText(String.valueOf(getIntent().getExtras().getDouble("paramsPromedio")));
         txtEstudiante.setText(getIntent().getExtras().getString("paramsNombre"));
 
-        GestionNotas context = this; //Perdón
+        GestionNotas context = this;
 
         listarNota();
 
@@ -119,8 +119,6 @@ public class GestionNotas extends AppCompatActivity {
             values.put("ID", cursor.getInt(0));
             values.put("NOMBRE", cursor.getString(1));
             values.put("PROMEDIO", promedio);
-
-            System.out.println("Branch dev");
 
             bd.update(Constantes.NOMBRE_TABLA_ESTUDIANTES, values, "id=" + id_estudiante, null);
             bd.close();
