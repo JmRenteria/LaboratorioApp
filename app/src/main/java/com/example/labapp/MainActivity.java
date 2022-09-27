@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void agregarEstudiante() {
         try {
-            DbHelper helper = new DbHelper(this);
-            SQLiteDatabase bd = helper.getReadableDatabase();
-            ContentValues values = new ContentValues();
+            DbHelper helper = new DbHelper(this); //Helper
+            SQLiteDatabase bd = helper.getReadableDatabase(); //Base de datos
+            ContentValues values = new ContentValues(); //Valores a insertar
             values.put("NOMBRE", etxtNombre.getText().toString().toUpperCase());
             values.put("PROMEDIO", 0.0);
 
@@ -87,22 +87,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void listarEstudiante() {
         try {
-            DbHelper helper = new DbHelper(this);
-            SQLiteDatabase bd = helper.getReadableDatabase();
-            Cursor cursor = bd.rawQuery("SELECT * FROM estudiantes", null);
+            DbHelper helper = new DbHelper(this); //Helper
+            SQLiteDatabase bd = helper.getReadableDatabase(); //Base de datos
+            Cursor cursor = bd.rawQuery("SELECT * FROM estudiantes", null); //Consulta que se almacena en un cursor
 
             listaEstudiantes = new ArrayList<>();
 
-            //Itera la consulta a través del cursos y crea un objeto estudiante en cada uno
+            //Itera la consulta a través del cursor y crea un objeto nota que mete en el ArrayList listaEstudiantes como String
             while (cursor.moveToNext()) {
-                Log.i("Ayuda", cursor.getString(1));
                 estudiante = new Estudiante(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2));
                 listaEstudiantes.add(estudiante.toString());
             }
 
+            //Adapta el listView listEstudiante usando un adapter que toma el ArrayList<> listaEstudiantes
             listEstudiante.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaEstudiantes));
         } catch (Exception e) {
-            Log.i("Ayuda", e.getMessage());
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
