@@ -126,13 +126,4 @@ public class GestionNotas extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
-
-    private void cargarPromedio() {
-        DbHelper helper = new DbHelper(this);
-        SQLiteDatabase bd = helper.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT promedio FROM estudiantes WHERE id = " + id_estudiante, null);
-        cursor.moveToFirst();
-        double promedio = Double.parseDouble(cursor.getString(0));
-        txtPromedio.setText(String.format("%,.2f", promedio));
-    }
 }
