@@ -120,6 +120,8 @@ public class GestionNotas extends AppCompatActivity {
             values.put("NOMBRE", cursor.getString(1));
             values.put("PROMEDIO", promedio);
 
+            System.out.println("Branch dev");
+
             bd.update(Constantes.NOMBRE_TABLA_ESTUDIANTES, values, "id=" + id_estudiante, null);
             bd.close();
         } catch (Exception e) {
