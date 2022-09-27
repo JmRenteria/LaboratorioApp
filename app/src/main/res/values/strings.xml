@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Aplicación Laboratorio</string>
+    <string name="app_name">Calculadora promedios</string>
 
     <string name="btn_volver">Volver</string>
     <string name="btn_agregar">Agregar</string>
@@ -9,4 +9,8 @@
 
     <string name="txt_promedio">Promedio</string>
     <string name="txt_placeholder">0.0</string>
+
+    <string name="txt_titulo">Estudiante</string>
+    <string name="txt_encabezado">Reporte de notas</string>
+    <string name="txt_estudiantes">Listado de estudiantes</string>
 </resources>
