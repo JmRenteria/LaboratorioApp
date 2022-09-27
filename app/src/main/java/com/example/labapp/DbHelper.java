@@ -11,13 +11,13 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, Constantes.NOMBRE_BD, null, Constantes.VERSION_BD);
     }
 
-    @Override
+    @Override //Creación de tablas
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Constantes.CREAR_TABLA_ESTUDIANTES);
         sqLiteDatabase.execSQL(Constantes.CREAR_TABLA_NOTAS);
     }
 
-    @Override
+    @Override //Eliminar las tablas si se cambia el archivo .bd
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constantes.NOMBRE_TABLA_ESTUDIANTES);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constantes.NOMBRE_TABLA_NOTAS);

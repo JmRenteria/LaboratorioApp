@@ -7,7 +7,7 @@ public class Nota {
     @Override
     public String toString() {
         return String.valueOf(nota);
-    }
+    } //Retorna la nota como String
 
     public Nota(int id, int id_estudiante, double nota) {
         this.id = id;
