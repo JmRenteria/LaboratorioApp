@@ -21,11 +21,13 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Declaración de elementos de interfaz gráfica
     Button btnAgregar;
     EditText etxtNombre;
-    Intent intent;
     ListView listEstudiante;
 
+    //Declaración de objetos a utilizar
+    Intent intent;
     Estudiante estudiante;
     ArrayList<String> listaEstudiantes;
 
@@ -34,33 +36,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Vinculación de elementos de interfaz gráfica
         btnAgregar = findViewById(R.id.btnAgregarEstudiante);
         etxtNombre = findViewById(R.id.etxtNombre);
         listEstudiante = findViewById(R.id.listEstudiante);
 
-        MainActivity context = this;
+        MainActivity context = this; //Almacena el context de la activity (No sirve de mucho, pero ayuda llamar un intent dentro de un scope local)
 
-        listarEstudiante();
+        listarEstudiante(); //Carga la lista de estudiantes
 
         btnAgregar.setOnClickListener(v -> {
             if (!etxtNombre.getText().toString().isEmpty()) {
-                agregarEstudiante();
-                listarEstudiante();
+                agregarEstudiante(); //Agrega estudiante nuevo
+                listarEstudiante(); //Refresca la lista de estudiantes
             } else {
                 Toast.makeText(context, "Ingrese un nombre", Toast.LENGTH_SHORT).show();
             }
         });
 
         listEstudiante.setOnItemClickListener((adapterView, view, i, l) -> {
-            String[] cadenas = listEstudiante.getItemAtPosition(i).toString().split(" - ");
-            int id = Integer.parseInt(cadenas[0]);
-            double promedio = Double.parseDouble(cadenas[1]);
-            String nombre = cadenas[2];
+            String[] cadenas = listEstudiante.getItemAtPosition(i).toString().split(" - "); //Parte el elemento de la lista cada '-' y lo guarda en un String[]
+            int id = Integer.parseInt(cadenas[0]); //Toma solo el id del String[] cadenas
+            double promedio = Double.parseDouble(cadenas[1]);  //Toma solo el promedio del String[] cadenas
+            String nombre = cadenas[2]; //Toma solo el nombre del String[] cadenas
             intent = new Intent(context, GestionNotas.class);
             intent.putExtra("paramsId", id);
             intent.putExtra("paramsPromedio", promedio);
             intent.putExtra("paramsNombre", nombre);
-            startActivity(intent);
+            startActivity(intent); //Carga actividad GestionNotas
         });
     }
 
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             long id = bd.insert(Constantes.NOMBRE_TABLA_ESTUDIANTES, null, values);
             bd.close();
 
+            //Si el id > 0, entonces el registro es correcto, de lo contrario, ocurrió un error
             Toast.makeText(this, id > 0 ? "Estudiante registrado correctamente":"Error al registrar estudiante", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(this, "Error al registrar estudiante", Toast.LENGTH_SHORT).show();
@@ -89,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
             listaEstudiantes = new ArrayList<>();
 
+            //Itera la consulta a través del cursos y crea un objeto estudiante en cada uno
             while (cursor.moveToNext()) {
                 Log.i("Ayuda", cursor.getString(1));
                 estudiante = new Estudiante(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2));
