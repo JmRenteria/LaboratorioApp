@@ -7,7 +7,7 @@ public class Estudiante {
 
     @Override
     public String toString() {
-        return id + " - " + String.format("%,.2f", promedio) + " - " + nombre;
+        return id + " - " + String.format("%,.2f", promedio) + " - " + nombre; //Retorna un String con formato para la lista
     }
 
     public Estudiante(int id, String nombre, double promedio) {
