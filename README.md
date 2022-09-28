@@ -1,7 +1,7 @@
 # Laboratorio - Aplicaciones Móviles
 Aplicación de creación de estudiantes con notas y cálculo de promedio en Android Studio.
 
-![](https://img.shields.io/badge/release-1.0.2-brightgreen)
+![](https://img.shields.io/badge/release-1.2.0-brightgreen)
 > Creada por: Jose Manuel Rentería y Jessica Vanessa Niño
 > 
 > Clase de Taller de Aplicaciones Móviles
