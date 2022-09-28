@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +20,7 @@ public class GestionNotas extends AppCompatActivity {
 
     //Declaración de elementos de interfaz gráfica
     Button btnAgregar, btnVolver;
-    TextView txtPromedio, txtEstudiante;
+    TextView txtPromedio, txtEstudiante, txtAprobado;
     EditText etxtNota;
     ListView listNota;
 
@@ -32,6 +31,8 @@ public class GestionNotas extends AppCompatActivity {
 
     //Declaración de variables útiles
     int id_estudiante;
+    double promedio;
+    String nombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,27 +44,35 @@ public class GestionNotas extends AppCompatActivity {
         btnVolver = findViewById(R.id.btnVolver);
         txtPromedio = findViewById(R.id.txtPromedio);
         txtEstudiante = findViewById(R.id.txtEstudiante);
+        txtAprobado = findViewById(R.id.txtAprobado);
         etxtNota = findViewById(R.id.etxtNota);
         listNota = findViewById(R.id.listNota);
 
         //Se recogen los parametros enviados en el Intent
         id_estudiante = getIntent().getExtras().getInt("paramsId");
-        txtPromedio.setText(String.valueOf(getIntent().getExtras().getDouble("paramsPromedio")));
-        txtEstudiante.setText(getIntent().getExtras().getString("paramsNombre"));
+        promedio = getIntent().getExtras().getDouble("paramsPromedio");
+        nombre = getIntent().getExtras().getString("paramsNombre");
+
+        txtPromedio.setText(String.valueOf(promedio));
+        txtEstudiante.setText(nombre);
+        txtAprobado.setText(promedio >= 3.0 ? "Aprobado":"Reprobado");
 
         GestionNotas context = this; //Almacena el context de la activity (No sirve de mucho, pero ayuda llamar un intent dentro de un scope local)
 
         listarNota(); //Carga la lista de notas
 
         btnAgregar.setOnClickListener(v -> {
-            if (!etxtNota.toString().isEmpty()) {
+            if (!etxtNota.getText().toString().isEmpty()) {
                 if (Double.parseDouble(etxtNota.getText().toString()) <= 5.0) {
                     agregarNota(); //Agrega nota nueva
                     actualizarPromedio(); //Calcula y actualiza el promedio del estudiante
                     listarNota(); //Refresa la lista de notas
+                } else {
+                    Toast.makeText(context, "Ingrese una nota entre 0.0 y 5.0", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(context, "Ingrese una nota", Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(context, "Ingrese una nota entre 0.0 y 5.0", Toast.LENGTH_SHORT).show();
         });
 
         btnVolver.setOnClickListener(v -> {
@@ -82,6 +91,8 @@ public class GestionNotas extends AppCompatActivity {
 
             long id = bd.insert(Constantes.NOMBRE_TABLA_NOTAS, null, values);
             bd.close();
+
+            etxtNota.setText("");
 
             //Si el id > 0, entonces el registro es correcto, de lo contrario, ocurrió un error
             Toast.makeText(this, id > 0 ? "Nota registrada correctamente":"Error al registrar nota", Toast.LENGTH_SHORT).show();
@@ -119,6 +130,7 @@ public class GestionNotas extends AppCompatActivity {
             cursor.moveToFirst();
             double promedio = Double.parseDouble(cursor.getString(1)) / Double.parseDouble(cursor.getString(0)); //Calcula el promedio
             txtPromedio.setText(String.format("%,.2f", promedio)); //Muestra el promedio en el txtPromedio
+            txtAprobado.setText(promedio >= 3.0 ? "Aprobado":"Reprobado"); //Actualiza si el estudiante aprueba o reprueba
 
             cursor = bd.rawQuery("SELECT * FROM estudiantes WHERE id = " + id_estudiante, null); //Consulta que se almacena en un cursor
             cursor.moveToFirst();

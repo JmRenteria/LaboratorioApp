@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
             long id = bd.insert(Constantes.NOMBRE_TABLA_ESTUDIANTES, null, values);
             bd.close();
 
+            etxtNombre.setText("");
+
             //Si el id > 0, entonces el registro es correcto, de lo contrario, ocurrió un error
             Toast.makeText(this, id > 0 ? "Estudiante registrado correctamente":"Error al registrar estudiante", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
