@@ -48,7 +48,7 @@ public class GestionNotas extends AppCompatActivity {
         etxtNota = findViewById(R.id.etxtNota);
         listNota = findViewById(R.id.listNota);
 
-        //Se recogen los parametros enviados en el Intent
+        //Se recogen los parámetros enviados en el Intent
         id_estudiante = getIntent().getExtras().getInt("paramsId");
         promedio = getIntent().getExtras().getDouble("paramsPromedio");
         nombre = getIntent().getExtras().getString("paramsNombre");
