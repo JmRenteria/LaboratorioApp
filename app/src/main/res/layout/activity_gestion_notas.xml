@@ -24,18 +24,40 @@
         android:id="@+id/listNota"
         android:layout_width="377dp"
         android:layout_height="222dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="328dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAgregarNota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="256dp"
+        android:backgroundTint="@color/red"
+        android:text="@string/btn_agregar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="560dp"
+        android:layout_marginEnd="300dp"
+        android:backgroundTint="@color/red"
+        android:text="@string/btn_volver"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etxtNota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="@string/etxt_nota"
         android:inputType="numberDecimal"
@@ -54,26 +76,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnVolver"
+    <TextView
+        android:id="@+id/txtAprobado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="516dp"
-        android:layout_marginEnd="304dp"
-        android:backgroundTint="@color/red"
-        android:text="@string/btn_volver"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="196dp"
+        android:text="@string/txt_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnAgregarNota"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="212dp"
-        android:backgroundTint="@color/red"
-        android:text="@string/btn_agregar"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
